@@ -1,0 +1,77 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": " The <code>TestRoleRequest</code> structure. ",
+            "properties": {
+                "InputBucket": {
+                    "description": "The Amazon S3 bucket that contains media files to be transcoded. The action attempts to read from this bucket.",
+                    "pattern": "^(\\w|\\.|-){1,255}$",
+                    "type": "string"
+                },
+                "OutputBucket": {
+                    "description": "The Amazon S3 bucket that Elastic Transcoder writes transcoded media files to. The action attempts to read from this bucket.",
+                    "pattern": "^(\\w|\\.|-){1,255}$",
+                    "type": "string"
+                },
+                "Role": {
+                    "description": "The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder to test.",
+                    "pattern": "^arn:aws:iam::\\w{12}:role/.+$",
+                    "type": "string"
+                },
+                "Topics": {
+                    "description": "The ARNs of one or more Amazon Simple Notification Service (Amazon SNS) topics that you want the action to send a test notification to.",
+                    "items": {
+                        "pattern": "(^$)|(^arn:aws:sns:.*:\\w{12}:.+$)",
+                        "type": "string"
+                    },
+                    "maxItems": 30,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "Role",
+                "InputBucket",
+                "OutputBucket",
+                "Topics"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
